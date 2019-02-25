@@ -1,0 +1,152 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+.quizApp {
+  font-family: 'Open Sans', sans-serif;
+}
+.quiz {
+  background: #b92b27; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to right,
+    #1565c0,
+    #b92b27
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to right,
+    #1565c0,
+    #b92b27
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  padding-bottom: 10em;
+}
+.polaroid {
+  background-color: white;
+  max-width: 40%;
+  max-height: 400%;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  margin: auto;
+  border-radius: 8px;
+}
+.container {
+  text-align: center;
+  padding: 15px 20px;
+  background-color: gray;
+  margin: auto;
+  max-height: 20em;
+  max-width: 20em;
+}
+.btn {
+  border: 2px solid white;
+  background-color: transparent;
+  color: white;
+  font-weight: bold;
+  margin-bottom: 0.1em;
+  width: 10em;
+  height: 3em;
+}
+
+.btn:hover {
+  border: 2px solid rgb(43, 42, 42);
+  color: #fff;
+  background: transparent;
+}
+
+.image {
+  max-height: 600px;
+  max-width: 600px;
+  overflow: hidden;
+}
+.btn3 {
+  margin-bottom: 4em;
+  margin-left: auto;
+  margin-right: auto;
+  border: 6px solid white;
+  color: chocolate;
+  font-weight: bold;
+  font-size: 25px;
+  background-color: transparent;
+}
+.btn3:hover {
+  border: 2px solid rgb(43, 42, 42);
+  color: #fff;
+  background: blueviolet;
+}
+.ans {
+  margin-top: 5em;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 1em;
+  border: 3px solid white;
+  background-color: wheat;
+
+  width: 25em;
+}
+.hint {
+  border: 2px solid white;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 2em;
+  max-width: 40%;
+  font-weight: bolder;
+  background-color: orange;
+  font-size: 35px;
+
+  align-content: center;
+}
+.hints {
+  border: 2px solid white;
+  margin-left: auto;
+  margin-right: auto;
+  background: rgb(60, 60, 60);
+  background: rgba(60, 60, 60, 0.4);
+  color: black;
+  font-weight: 500;
+  font-size: 25px;
+
+  max-width: 40%;
+
+  align-content: center;
+}
+
+.hints a {
+  color: black;
+  opacity: 1;
+  font-size: 35px;
+}
+.footer2 {
+  background-color: white;
+  align: center;
+  font-weight: bolder;
+  color: rgb(158, 90, 65);
+}
+
+.table {
+  font-family: "Open Sans", sans-serif;
+}
+.table {
+  margin: 1em;
+  display: flex;
+  flex-direction: column;
+}
+.table .header,
+.row {
+  display: flex;
+}
+.table .header div,
+.table .row div {
+  flex: 1;
+  padding: 0.2rem 0.4em;
+  border: 1px solid #eeeeee;
+}
+.table .header {
+  background-color: #eeeeee;
+}
+.table .header div {
+  cursor: pointer;
+}
+
+.icon {
+  height: 85px;
+  width: 85px;
+}
+
+.rules {
+  text-align: left;
+}

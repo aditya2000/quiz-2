@@ -1,0 +1,78 @@
+@import url("https://fonts.googleapis.com/css?family=Cabin");
+@import url("https://fonts.googleapis.com/css?family=Kaushan+Script");
+
+@keyframes change {
+  0% {
+    background: #0918ee;
+    background: -webkit-linear-gradient(to left, #00ff55, #b909ee);
+    background: linear-gradient(to left, #00ff55, #b909ee);
+  }
+  25% {
+    background-color: rgb(153, 0, 255);
+    background: -webkit-linear-gradient(to left, #5eff00, #096cee);
+    background: linear-gradient(to left, #5eff00, #096cee);
+  }
+  50% {
+    background-color: rgb(0, 255, 234);
+    background: -webkit-linear-gradient(to left, #ffe600, #09d3ee);
+    background: linear-gradient(to left, #ffe600, #09d3ee);
+  }
+  75% {
+    background-color: rgb(145, 216, 14);
+    background: -webkit-linear-gradient(to left, #e100ff, #09ee8f);
+    background: linear-gradient(to left, #e100ff, #09ee8f);
+  }
+  100% {
+    background: #ee0979;
+    background: -webkit-linear-gradient(to left, #ff6a00, #ee0979);
+    background: linear-gradient(to left, #ff6a00, #ee0979);
+  }
+}
+
+.navbar {
+  font-family: "Cabin", sans-serif;
+  background: rgb(43, 42, 42);
+  overflow: hidden;
+  padding: 1em;
+  width: 100%;
+  position: fixed;
+}
+
+.navbar h2 {
+  font-family: "Kaushan Script", cursive;
+  color: #fff;
+  font-weight: bold;
+  font-size: 3.5em;
+}
+
+.navbar a {
+  color: #fff;
+  text-decoration: none;
+  display: inline-block;
+  padding: 0 2em;
+  font-size: 1.15em;
+}
+
+.navbar a:hover {
+  color: rgb(88, 73, 73);
+  transition: 0.5s;
+}
+
+.navWide {
+  display: none;
+  margin: 0 auto;
+}
+
+.wideDiv {
+  text-align: center;
+}
+
+@media only screen and (min-width: 480px) {
+  .navWide {
+    display: block;
+  }
+
+  .navNarrow {
+    display: none;
+  }
+}
