@@ -1,7 +1,9 @@
 @import url("https://fonts.googleapis.com/css?family=Cabin");
 @import url("https://fonts.googleapis.com/css?family=Emilys+Candy|Roboto+Slab");
 
-.btn {
+
+
+.button {
   margin: 1em;
   width: 10em;
   height: 3em;
@@ -9,26 +11,30 @@
   border-radius: 2px;
   background-color: transparent;
   border: 2px solid black;
-  color: red;
+  color: black;
   font-family: "Cabin", sans-serif;
   font-weight: bold;
   transition: 0.5s;
   outline: none;
 }
 
-.btn:hover {
+.button:hover {
   border: 2px solid rgb(43, 42, 42);
   color: #fff;
   background: rgb(43, 42, 42);
 }
 .login {
+
+  background: #2C3E50;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #4CA1AF, #2C3E50);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #4CA1AF, #2C3E50); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+  
+
+color: #fff;
   font-family: "Cabin", sans-serif;
   text-align: center;
-  /* background-image: url("./assets/o.gif");*/
-  background-size: 100% 90%;
-  padding: 16em;
-
-  background-repeat: no-repeat;
+  padding: 2em;
 }
 
 .header {
@@ -41,6 +47,14 @@
   color: red;
   padding: 1 em;
 }
+
+.footer p {
+  color: #fff;
+}
+
+.footer a {
+  color: red;
+}
 .form-group {
   max-width: 400px;
   margin: 50px auto;
@@ -50,16 +64,17 @@
   font-family: Georgia, "Times New Roman", Times, serif;
 }
 
-input {
+.input {
   font-size: 18px;
   padding: 10px 10px 10px 5px;
   display: block;
-  width: 300px;
+  width: 350px;
   border: none;
-  border-bottom: 1px solid #757575;
+  border-radius: 2px;
+  font-family: "Cabin", sans-serif;
 }
-input:focus {
-  outline: none;
+.input:focus {
+  outline: #fff;
 }
 /*@media screen {
   .login {
@@ -67,3 +82,14 @@ input:focus {
     height: 100%;
   }
 }*/
+
+
+@media screen and (max-width: 800px) {
+  .input {
+    font-size: 15px;
+    display: block;
+    margin-top: -2em;
+    margin-left: .75em;
+    width: 250px;
+  }
+}

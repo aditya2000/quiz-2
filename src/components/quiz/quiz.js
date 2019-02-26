@@ -8,12 +8,12 @@ import End from '../end/end';
 import md5 from "crypto-js/md5";
 //import { AutoSizer, Column, SortDirection, Table } from "react-virtualized";
 
-const Row = ({ points, level, splittime, name }) => (
+const Row = ({ points, level,lastsolved2 ,name }) => (
   <div className="row">
     <div>{points}</div>
     <div>{level}</div>
-    <div>{splittime}</div>
-    <div>{name}</div>
+      <div>{lastsolved2}</div>
+       <div>{name}</div>
   </div>
 );
 
@@ -32,6 +32,7 @@ class Quiz extends Component {
       timer: 0,
       name: "",
       lastsolved: 0,
+      lastsolved2: "",
       flag: 0
     };
 
@@ -120,11 +121,14 @@ class Quiz extends Component {
               querySnapshot.forEach(doc => {
                  this.setState({
                    lastsolved: doc.data().lastsolved,
+                   lastsolved2: doc.data().lastsolved2,
                    flag :1
                    
                 })
-                console.log("current"+Number(Math.round(new Date().getTime() / 1000)))
-                console.log("last"+this.state.lastsolved)
+                
+               // console.log("current"+Number(Math.round(new Date().getTime() / 1000)))
+                
+               // console.log("lastsolved",this.state.lastsolved2)
               });
             });
     this.db
@@ -197,55 +201,59 @@ class Quiz extends Component {
         // console.log(ans.words[0]);
         if (ans.words[0] == question.answer) {
           alert("You're right!!");
-          var size = 0;
+         
+          
+         
           const db = this.db;
           db.collection("users")
             .where("level", ">=", this.state.level)
             .get()
             .then(snap => {
               snap = snap.size;
-              size = snap;
+
+              if (snap < 10) {
+                db.collection("users")
+                  .where("userid", "==", firebase.auth().currentUser.uid)
+                  .get()
+                  .then(querySnapshot => {
+                    querySnapshot.forEach(doc => {
+                      db.collection("users")
+                        .doc(doc.id)
+                        .update({
+                          points: this.state.points + 10
+                        });
+                    });
+                  });
+              } else if (snap >=10&& snap < 15) {
+                db.collection("users")
+                  .where("userid", "==", firebase.auth().currentUser.uid)
+                  .get()
+                  .then(querySnapshot => {
+                    querySnapshot.forEach(doc => {
+                      db.collection("users")
+                        .doc(doc.id)
+                        .update({
+                          points: this.state.points + 9
+                        });
+                    });
+                  });
+              } else {
+                db.collection("users")
+                  .where("userid", "==", firebase.auth().currentUser.uid)
+                  .get()
+                  .then(querySnapshot => {
+                    querySnapshot.forEach(doc => {
+                      db.collection("users")
+                        .doc(doc.id)
+                        .update({
+                          points: this.state.points + 8
+                        });
+                    });
+                  });
+              }
+            
             });
-          if (size < 10) {
-            db.collection("users")
-              .where("userid", "==", firebase.auth().currentUser.uid)
-              .get()
-              .then(querySnapshot => {
-                querySnapshot.forEach(doc => {
-                  db.collection("users")
-                    .doc(doc.id)
-                    .update({
-                      points: this.state.points + 10
-                    });
-                });
-              });
-          } else if (size < 15) {
-            db.collection("users")
-              .where("userid", "==", firebase.auth().currentUser.uid)
-              .get()
-              .then(querySnapshot => {
-                querySnapshot.forEach(doc => {
-                  db.collection("users")
-                    .doc(doc.id)
-                    .update({
-                      points: this.state.points + 9
-                    });
-                });
-              });
-          } else {
-            db.collection("users")
-              .where("userid", "==", firebase.auth().currentUser.uid)
-              .get()
-              .then(querySnapshot => {
-                querySnapshot.forEach(doc => {
-                  db.collection("users")
-                    .doc(doc.id)
-                    .update({
-                      points: this.state.points + 8
-                    });
-                });
-              });
-          }
+          
 
           this.setState(prev => ({
             level: prev.level + 1
@@ -266,6 +274,11 @@ class Quiz extends Component {
               });
             });
           var d = Number(Math.round(new Date().getTime() / 1000));
+          
+          var dd = new Date();
+           dd = dd.toString();
+          
+         // alert(dd.toString());
           db.collection("users")
             .where("userid", "==", firebase.auth().currentUser.uid)
             .get()
@@ -274,9 +287,10 @@ class Quiz extends Component {
                 db.collection("users")
                   .doc(doc.id)
                   .update({
-                    lastsolved: d
+                    lastsolved: d,
+                    lastsolved2: dd
                   });
-                  // console.log(d)
+                
               });
             });
 
@@ -318,11 +332,12 @@ class Quiz extends Component {
                           .update({
                             splittime: doc.data().lastsolved - time_first
                           });
-                        console.log("lastsolved =>", doc.data().lastsolved);
+                        //console.log("lastsolved2 =>", doc.data().lastsolved2);
                         this.setState({
-                          lastsolved :doc.data().lastsolved
+                          lastsolved :doc.data().lastsolved,
+                          lastsolved2: doc.data().lastsolved2
                         })
-                        console.log("timefirst =>", time_first);
+                        //console.log("lastsolved2 =>", this.state.lastsolved2);
                       });
                     });
 
@@ -380,14 +395,14 @@ class Quiz extends Component {
 
           <h3 class="hint">Hints</h3>
           <div class="hints">
-            <h3>Hints</h3>
+            <h5>Reload after every 10 minutes for hints <br/>(max three hints)</h5>
             <p key={Math.random()}>{this.state.hints[0]}</p>
-            {this.state.flag===1?(<div> {Number(Math.round(new Date().getTime() / 1000)) >= this.state.lastsolved+ 60? (
+            {this.state.flag===1?(<div> {Number(Math.round(new Date().getTime() / 1000)) >= this.state.lastsolved+ 600? (
               <p key={Math.random()}>{this.state.hints[1]}</p>
             ) : (
               <p key={Math.random()} />
             )}</div>):(<div></div>)}
-            {this.state.flag===1?(<div>{Number(Math.round(new Date().getTime() / 1000)) >= this.state.lastsolved+100 ? (
+            {this.state.flag===1?(<div>{Number(Math.round(new Date().getTime() / 1000)) >= this.state.lastsolved+1200 ? (
               <p key={Math.random()}>{this.state.hints[2]}</p>
             ) : (
               <p key={Math.random()} />
@@ -417,19 +432,20 @@ class Quiz extends Component {
               />
             </a>
           </h2>
+          <h2>--CLICK ON THE COLUMN'S. TO SORT ACCORDING THEM--</h2>
         </div>
         <div class="table">
           <div class="header">
-            <div onClick={() => this.sortBy("points")}>points</div>
-            <div onClick={() => this.sortBy("level")}>level</div>
-            <div onClick={() => this.sortBy("splittime")}>splittime</div>
-            <div onClick={() => this.sortBy("name")}>name</div>
+            <div onClick={() => this.sortBy("points")}>Points</div>
+            <div onClick={() => this.sortBy("level")}>Level</div>
+              <div onClick={() => this.sortBy("lastsolved2")}>Last Solved</div> 
+            <div onClick={() => this.sortBy("name")}>Name</div>
           </div>
           <div class="body">{rows}</div>
         </div>
         <div class="rules">
             <h1>Rules</h1>
-            <ul>
+            <ul><li>Keep our facebook page opened. Thats how you will be updated, during the event.</li>
               <li>For interaction with the organizers there would be organizer managed Facebook page</li>
               <li>Only alphabets and numbers are allowed.(No special characters)</li>
               <li>Any attempt of hacking will lead to automatic disqualification.</li>
@@ -441,10 +457,10 @@ class Quiz extends Component {
                   <li>Remaining players to clear that level will get 8 points.</li>
                 </ol>
               </li>
-              <li>Only one prize will be awarded: 
+              <li>Top three will be awarded: 
                 <ol>
-                  <li>The prize will go to the first player completing all the levels irrespective of points and split time.</li>
-                  <li> If no one is able to complete all the levels and the event ends, the player with maximum level will win. If levels are same then points will be considered and if points are same then split time will be considered in deciding the winner.</li>
+                  <li>The winners will be the top 3 players completing all the levels irrespective of points and split time.</li>
+                  <li> If no one is able to complete all the levels and the event ends, the players with maximum level will win. If levels are same then points will be considered and if points are same then lastsolved will be considered in deciding the winners.</li>
                 </ol>
               </li>
             </ul>

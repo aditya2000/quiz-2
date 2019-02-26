@@ -76,6 +76,7 @@ class Login extends Component {
           userid: firebase.auth().currentUser.uid,
           level: 1,
           lastsolved: 0,
+          lastsolved2: "",
           splittime: 0,
           points: 0,
           name: this.state.email
@@ -93,8 +94,8 @@ class Login extends Component {
     return (
       <div className="login">
         <p>
-          ENTER A VALID EMAIL ADDRESS. BECAUSE THATS THE ONLY WAY TO CONTACT
-          YOU. INCASE YOU WIN.
+          ENTER A VALID EMAIL ADDRESS BECAUSE THAT'S THE ONLY WAY TO CONTACT
+          YOU INCASE YOU WIN.
         </p>
         <p>FIRST SIGN UP, THEN LOGIN</p>
         <div className="header">
@@ -126,14 +127,16 @@ class Login extends Component {
               variant="filled"
             />
           </div>
-          <button type="submit" onClick={this.login} className="btn">
+          <button type="submit" onClick={this.login} className="button">
             Login
           </button>
-          <button onClick={this.signup} className="btn">
+          <button onClick={this.signup} className="button">
             Signup
           </button>
         </form>
         <div id="#footer" className="footer">
+          <br/>
+          <br/>
           <p>
             Made with{" ❤️ "}
             <i className="fas fa-heart" style={{ color: "#dd1b3b" }} /> by{" "}
@@ -142,8 +145,11 @@ class Login extends Component {
             </a>{" "}
             and{" "}
             <a href="https://github.com/aditya2000" target="_blank">
-              Aditya Dehal
+              Aditya Dehal.
             </a>
+            <br/>
+            Special Thanks to Sankalp Loomba
+            
           </p>
           <p>&copy; 2019 Curieux. All rights reserved.</p>
         </div>
