@@ -1,4 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Open+Sans');
 .end {
+  padding: 5em;
+  margin: 5em;
   font-family: 'Open Sans', sans-serif;
 }

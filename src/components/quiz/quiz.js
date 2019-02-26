@@ -371,7 +371,7 @@ class Quiz extends Component {
     return (
       <div className="quizApp">
         <Navbar />
-        {this.state.level>=40|| (date_end.getDate()>=26 && date_end.getHours()>=21)?(<End/>):(<div>
+        {this.state.level>=40?(<End/>):(<div>
           <div className="quiz">
           <h1>CONFUNDO</h1>
           <h2>WELCOME {this.state.name} </h2>
